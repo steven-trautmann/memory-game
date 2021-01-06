@@ -49,6 +49,7 @@
   display: flex;
   margin: 4rem;
   justify-content: space-evenly;
+  align-items: center;
   flex-wrap: wrap;
 }
 </style>

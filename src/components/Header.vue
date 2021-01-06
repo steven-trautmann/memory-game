@@ -3,6 +3,8 @@
     <router-link to="/about"><button id="about-link">About Page</button></router-link>
     <h1>Trágya Memory</h1>
     <h3>- Azaz az emberek, akikről bár ne lenne emléked</h3>
+    <p>total pairs: {{totalPairs}}</p>
+    <p>pairs found: {{pairsFound}}</p>
     <button @click="shuffle">Shuffle</button>
   </div>
 </template>
@@ -13,8 +15,16 @@ export default {
   methods: {
     shuffle(){
       this.$emit("shuffle")
+    }
+  },
+  computed: {
+    pairsFound(){
+      return this.$store.state.game.pairsFound;
     },
-  }
+    totalPairs(){
+      return this.$store.state.game.totalPairs;
+    }
+  },
 }
 </script>
 
