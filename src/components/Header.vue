@@ -5,17 +5,16 @@
     <h3>- Azaz az emberek, akikről bár ne lenne emléked</h3>
     <p>total pairs: {{totalPairs}}</p>
     <p>pairs found: {{pairsFound}}</p>
-    <button @click="shuffle">Shuffle</button>
+    <p>mismatches: {{mismatches}}</p>
+    <button v-if="gameOver" @click="reload">Újra</button>
   </div>
 </template>
 
 <script>
 export default {
   name: "Header",
-  methods: {
-    shuffle(){
-      this.$emit("shuffle")
-    }
+  props: {
+    gameOver: Boolean
   },
   computed: {
     pairsFound(){
@@ -23,8 +22,16 @@ export default {
     },
     totalPairs(){
       return this.$store.state.game.totalPairs;
+    },
+    mismatches(){
+      return this.$store.state.game.mismatches;
     }
   },
+  methods: {
+    reload(){
+      location.reload();
+    }
+  }
 }
 </script>
 

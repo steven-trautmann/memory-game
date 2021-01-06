@@ -1,11 +1,14 @@
 <template>
   <div>
-    <Header @shuffle="shuffle" />
+    <Header :gameOver="gameOver" />
     <div id="game-field">
       <Card
-          v-for="(path, index) in paths"
+          v-for="(card, index) in cards"
           :key="index"
-          :path="path"
+          :card="card"
+          @match="matchedCards"
+          @mismatch="mismatch"
+          @game-over="gameIsOver"
       />
     </div>
   </div>
@@ -19,7 +22,8 @@
     name: 'Home',
     data: () => {
       return {
-        paths: []
+        cards: [],
+        gameOver: false
       }
     },
     mounted() {
@@ -28,13 +32,36 @@
     },
     methods: {
       importAll(paths){
+        let i = -1;
         paths.keys().forEach(key => {
-          this.paths.push({url: paths(key), name: key})
-          this.paths.push({url: paths(key), name: key})
+          this.cards.push({url: paths(key), name: key, matched: false, visible: false, id: ++i})
+          this.cards.push({url: paths(key), name: key, matched: false, visible: false, id: ++i})
         });
       },
       shuffle(){
-        this.paths = this.paths.sort(() => Math.random() - 0.5);
+        this.cards = this.cards.sort(() => Math.random() - 0.5);
+      },
+      matchedCards(name){
+        for (let card of this.cards){
+          if (card.name === name){
+            card.matched = true;
+          }
+        }
+      },
+      mismatch(recentCardId){
+        this.$store.commit("increaseMismatches");
+        this.recentCardToInvisible(recentCardId);
+      },
+      recentCardToInvisible(recentCardId){
+        for (let card of this.cards){
+          if (card.id === recentCardId){
+            card.visible = false;
+            break;
+          }
+        }
+      },
+      gameIsOver(){
+        this.gameOver = true;
       }
     },
     components: {

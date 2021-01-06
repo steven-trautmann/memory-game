@@ -1,15 +1,19 @@
 export default {
     state: {
-        recentCard: "",
+        recentCard: null,
         totalPairs: require.context('../../public/images/', true, /\.jpg$/).keys().length,
-        pairsFound: 0
+        pairsFound: 0,
+        mismatches: 0,
     },
     mutations: {
-        setRecentCard(mostRecent){
-            this.recentCard = mostRecent;
+        setRecentCard(state, mostRecent){
+            state.recentCard = mostRecent;
         },
-        increasePairsFound(){
-            this.pairsFound++;
+        increasePairsFound(state){
+            state.pairsFound++;
+        },
+        increaseMismatches(state){
+            state.mismatches++;
         }
     }
 }
