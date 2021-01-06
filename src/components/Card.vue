@@ -46,11 +46,12 @@ export default {
       if (this.$store.state.game.totalPairs === this.$store.state.game.pairsFound){
         setTimeout(() => {
           let mismatches = this.$store.state.game.mismatches;
+          let max = this.$store.state.game.totalPairs;
           if (mismatches === 0){
             alert("na mész a picsába, 0 hiba?? valahol csaltál. de azért grat")
-          } else if (mismatches <= 8){
+          } else if (mismatches <= max){
             alert("ÚR ISTEN! Te nagyon fasza gyerek vagy, csupán " + mismatches + " hibával csináltad meg a feladványt")
-          } else if (mismatches <= 13){
+          } else if (mismatches <= max*1.6){
             alert("Nem rossz, összesen " + mismatches + " hibával sikerült megoldani, de azért szerintem menne ez gyorsabban is!")
           } else {
             alert("uhh, hát gyakorolj még:D " + mismatches + " hiba az nem semmi, majdnem rosszabb vagy, mint én!")
