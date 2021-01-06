@@ -68,8 +68,8 @@ export default {
 <style scoped>
   .content {
     margin: 0.5rem;
-    height: 10rem;
-    width: 10rem;
+    height: 12vw;
+    width: 12vw;
     cursor: pointer;
     transition: opacity .15s ease-in-out;
   }

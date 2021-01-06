@@ -74,7 +74,7 @@
 <style scoped>
 #game-field {
   display: flex;
-  margin: 4rem;
+  margin: 4vw;
   justify-content: space-evenly;
   align-items: center;
   flex-wrap: wrap;
